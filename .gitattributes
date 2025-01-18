@@ -1,0 +1,8 @@
+.pth filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+\# filter=lfs diff=lfs merge=lfs -text
+Configurează filter=lfs diff=lfs merge=lfs -text
+Git filter=lfs diff=lfs merge=lfs -text
+LFS filter=lfs diff=lfs merge=lfs -text
+pentru filter=lfs diff=lfs merge=lfs -text
+fișierele filter=lfs diff=lfs merge=lfs -text
