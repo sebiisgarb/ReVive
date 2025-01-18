@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReVive - Restaurare Imagini</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ReVive - Restaurare Imagini</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Restaurează</button>
+        </form>
+
+        {% if restored_image %}
+            <h2>Imagine restaurată:</h2>
+            <img src="/{{ restored_image }}" alt="Restored Image">
+        {% endif %}
+    </div>
+</body>
+</html>
