@@ -7,7 +7,31 @@ import os
 import uuid
 
 
+@login_required
+def colorize_flow_view(request):
+   return render(request, 'colorizer/colorize_flow.html')
+
 
 @login_required
-def colorize_view(request):
-   return render(request, 'colorizer/colorizer.html')
+def unsupervised_image_view(request):
+   return redirect('colorizer_flow')
+
+
+@login_required
+def unsupervised_video_view(request):
+   return redirect('colorizer_flow')
+
+
+@login_required
+def supervised_scribble_view(request):
+   return redirect('colorizer_flow')
+
+
+@login_required
+def supervised_color_palette_view(request):
+   return redirect('colorizer_flow')
+
+
+@login_required
+def supervised_prompt_view(request):
+   return redirect('colorizer_flow')

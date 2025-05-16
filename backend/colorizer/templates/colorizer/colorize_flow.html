@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReVive</title>
+        <style>
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .screen.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+ <!-- PAS 1: Alegere tip -->
+<div id="step1" class="screen active">
+    <h2>Alege tipul de colorizare</h2>
+    <button onclick="showStep('supervised')">Supervised</button>
+    <button onclick="showStep('unsupervised')">Unsupervised</button>
+</div>
+
+<!-- PAS 2A: Submetode Supervised -->
+<div id="supervised" class="screen">
+    <h2>Metodă Supervised</h2>
+    <button onclick="showStep('scribble')">Scribble</button>
+    <button onclick="showStep('palette')">Color Palette</button>
+    <button onclick="showStep('prompt')">Prompt</button>
+    <br><button onclick="showStep('step1')">⬅ Înapoi</button>
+</div>
+
+<!-- PAS 2B: Submetode Unsupervised -->
+<div id="unsupervised" class="screen">
+    <h2>Metodă Unsupervised</h2>
+    <button onclick="showStep('image')">Image</button>
+    <button onclick="showStep('video')">Video</button>
+    <br><button onclick="showStep('step1')">⬅ Înapoi</button>
+</div>
+
+<!-- PAS 3A: Formulare Supervised -->
+<div id="scribble" class="screen">
+    <h2>Scribble Upload</h2>
+    <form method="POST" enctype="multipart/form-data" action="/colorizer/supervised/scribble/">
+        {% csrf_token %}
+        <input type="file" name="original_image" required><br><br>
+        <button type="submit">Trimite</button>
+    </form>
+    <br><button onclick="showStep('supervised')">⬅ Înapoi</button>
+</div>
+
+<div id="palette" class="screen">
+    <h2>Color Palette Upload</h2>
+    <form method="POST" enctype="multipart/form-data" action="/colorizer/supervised/color_palette/">
+        {% csrf_token %}
+        <input type="file" name="original_image" required><br><br>
+        <button type="submit">Trimite</button>
+    </form>
+    <br><button onclick="showStep('supervised')">⬅ Înapoi</button>
+</div>
+
+<div id="prompt" class="screen">
+    <h2>Prompt Upload</h2>
+    <form method="POST" enctype="multipart/form-data" action="/colorizer/supervised/prompt/">
+        {% csrf_token %}
+        <label>Prompt:</label>
+        <input type="text" name="prompt" required><br><br>
+        <input type="file" name="original_image" required><br><br>
+        <button type="submit">Trimite</button>
+    </form>
+    <br><button onclick="showStep('supervised')">⬅ Înapoi</button>
+</div>
+
+<!-- PAS 3B: Formulare Unsupervised -->
+<div id="image" class="screen">
+    <h2>Unsupervised Image Upload</h2>
+    <form method="POST" enctype="multipart/form-data" action="/colorizer/unsupervised/image/">
+        {% csrf_token %}
+        <input type="file" name="original_image" required><br><br>
+        <button type="submit">Trimite</button>
+    </form>
+    <br><button onclick="showStep('unsupervised')">⬅ Înapoi</button>
+</div>
+
+<div id="video" class="screen">
+    <h2>Unsupervised Video Upload</h2>
+    <form method="POST" enctype="multipart/form-data" action="/colorizer/unsupervised/video/">
+        {% csrf_token %}
+        <input type="file" name="original_video" accept="video/mp4" required><br><br>
+        <button type="submit">Trimite</button>
+    </form>
+    <br><button onclick="showStep('unsupervised')">⬅ Înapoi</button>
+</div>
+
+<script>
+function showStep(id) {
+    document.querySelectorAll('.screen').forEach(el => {
+        el.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>

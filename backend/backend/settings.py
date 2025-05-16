@@ -143,6 +143,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/colorizer/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 ACCOUNT_AUTHENTICATION_METHODS = ['username', 'email']
 ACCOUNT_SIGNUP_FIELDS = ['username', 'email', 'password1', 'password2']
